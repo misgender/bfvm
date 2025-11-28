@@ -49,6 +49,11 @@ Bfvm *bfvm_init() {
   return vm;
 }
 
+void bfvm_free(Bfvm *vm) {
+  free(vm->mem);
+  free(vm);
+}
+
 BfvmStatus bfvm_step(Bfvm *vm) {
   if (vm->ip == vm->prog_size) return BS_HALT;
   if (vm->ip > vm->prog_size

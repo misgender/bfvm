@@ -9,7 +9,7 @@
 typedef uint16_t BfvmOp;
 
 typedef struct bfvm_machine {
-  BfvmOp *prog;
+  const BfvmOp *prog;
   size_t prog_size;
   uint16_t ip; // instruction pointer
   uint8_t *mem;
@@ -32,3 +32,5 @@ bfvm_load(Bfvm *vm, BfvmOp *prog,
 }
 
 BfvmStatus bfvm_step(Bfvm*);
+
+void bfvm_free(Bfvm*);
