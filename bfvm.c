@@ -1,4 +1,4 @@
-// bfvm: core virtual machine
+// bfvm.c: core virtual machine
 // part of bfvm by Liz Cody <liz@cody.sh>
 
 #include <stdio.h>
@@ -29,7 +29,7 @@
 #define INT_TARGET_PRINT 0x100
 #define INT_TARGET_LOAD 0x200
 
-Bfvm* bfvm_init() {
+Bfvm *bfvm_init() {
   Bfvm *vm = malloc(sizeof(*vm));
 
   if (vm == NULL) return NULL;
