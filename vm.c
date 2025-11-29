@@ -1,4 +1,4 @@
-// bfvm.c: core virtual machine
+// vm.c: virtual machine
 // part of bfvm by Liz Cody <liz@cody.sh>
 
 #include <stdio.h>

@@ -1,7 +1,10 @@
+// comp.c: compiler
+// part of bfvm by Liz Cody <liz@cody.sh>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
-#include "compile.h"
+#include "bfvm.h"
 
 enum tok_type {
   TOK_NIL,

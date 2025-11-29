@@ -24,6 +24,8 @@ typedef enum bfvm_status {
 
 Bfvm *bfvm_init();
 
+ssize_t bfvm_compile(char*, size_t, BfvmOp**);
+
 static inline void
 bfvm_load(Bfvm *vm, BfvmOp *prog,
           size_t prog_size) {

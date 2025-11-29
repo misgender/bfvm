@@ -7,7 +7,6 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include "bfvm.h"
-#include "compile.h"
 
 int main(int argc, char *argv[]) {
   if (argc != 2) {
