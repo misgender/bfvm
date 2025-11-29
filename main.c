@@ -3,7 +3,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
 #include "bfvm.h"
+#include "compile.h"
 
 int main(int argc, char *argv[]) {
   if (argc != 2) {
@@ -11,17 +15,10 @@ int main(int argc, char *argv[]) {
     return EXIT_FAILURE;
   }
 
-  FILE *fd = fopen(argv[1], "rb");
+  int fd = open(argv[1], O_RDONLY);
+  struct stat sb;
+  fstat(fd, &sb);
 
-  if (fd == NULL) {
-    perror(argv[0]);
-    return EXIT_FAILURE;
-  }
-
-  fclose(fd);
-
-  int buf;
-
-  while ((buf = fgetc(fd)) != EOF) {
-  }
+  char *src = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
+  bfvm_compile(src, sb.st_size, NULL);
 }
