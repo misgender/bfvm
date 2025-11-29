@@ -11,9 +11,9 @@ typedef uint16_t BfvmOp;
 typedef struct bfvm_machine {
   const BfvmOp *prog;
   size_t prog_size;
-  uint16_t ip; // instruction pointer
   uint8_t *mem;
-  uint16_t dp; // data pointer
+  uint16_t ip;
+  uint16_t dp;
 } Bfvm;
 
 typedef enum bfvm_status {
