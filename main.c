@@ -29,4 +29,6 @@ int main(int argc, char *argv[]) {
   bfvm_load(bfvm, ops, ops_len);
   BfvmStatus status;
   while ((status = bfvm_step(bfvm)) == BS_OK);
+  free(ops);
+  bfvm_free(bfvm);
 }
