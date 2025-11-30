@@ -109,7 +109,7 @@ BfvmStatus bfvm_step(Bfvm *vm) {
       return BS_HALT;
     }
 
-    const uint32_t n = (op & MASK_INT_PAYLOAD) + 1;
+    const uint32_t n = (op & MASK_INT_PAYLOAD) /* + 1 */;
 
     if (target == INT_TARGET_PRINT) {
       for (int i = 0; i < n; ++i) {

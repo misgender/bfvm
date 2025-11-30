@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
@@ -19,5 +20,13 @@ int main(int argc, char *argv[]) {
   fstat(fd, &sb);
 
   char *src = mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, 0);
-  bfvm_compile(src, sb.st_size, NULL);
+  BfvmOp *ops;
+  ssize_t ops_len = bfvm_compile(src, sb.st_size, &ops);
+  munmap(src, sb.st_size);
+  close(fd);
+
+  Bfvm *bfvm = bfvm_init();
+  bfvm_load(bfvm, ops, ops_len);
+  BfvmStatus status;
+  while ((status = bfvm_step(bfvm)) == BS_OK);
 }
